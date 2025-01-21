@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#fffdde];
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+.gallery-container {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 300px;
+  gap: 0;
+  animation: scrollGallery 120s linear infinite;
+}
+
+.gallery-grid:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scrollGallery {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.gallery-item:nth-child(3n) {
+  grid-row: span 2;
+}
+
+.gallery-item:nth-child(5n) {
+  grid-column: span 2;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.1);
+  transition: transform 0.8s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1);
+}
+
+.nav-link {
+  @apply text-gray-800 hover:text-pink-500 transition-colors duration-300;
+}
+
+.logo {
+  @apply font-playfair italic text-5xl text-pink-500 tracking-wider;
+}
+
+.moving-text-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 2rem 0;
+}
+
+.moving-text {
+  white-space: nowrap;
+  animation: moveText 20s linear infinite;
+  display: inline-block;
+}
+
+@keyframes moveText {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.contact-form input,
+.contact-form textarea {
+  @apply w-full bg-transparent border-b-2 border-pink-300 px-4 py-2 focus:outline-none focus:border-pink-500 transition-colors duration-300;
+}
+
+.contact-form label {
+  @apply text-gray-600 text-sm uppercase tracking-wider;
+}
+
+.contact-button {
+  @apply bg-pink-500 text-white px-8 py-3 rounded-full hover:bg-pink-600 transition-colors duration-300;
+}
+
+.footer-wave {
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-wave::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: radial-gradient(50% 50% at 50% 50%, #fffdde 0%, transparent 100%);
+  animation: waveAnimation 8s ease-in-out infinite;
+}
+
+@keyframes waveAnimation {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
